@@ -41,3 +41,18 @@ Obs.: Usar bootstrap e jQuery
 
         python mange.py runserver localhost:8000
 
+## Testar a aplicação
+
+- Endereço
+
+        http://ec2-15-228-39-186.sa-east-1.compute.amazonaws.com/
+
+- Usuário morotista:
+
+        usuário: motorista
+        senha: @useful123
+
+- Usuário admin:
+
+        usuário: admin
+        senha: admin
