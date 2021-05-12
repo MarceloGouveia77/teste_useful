@@ -47,3 +47,38 @@ def detalhe_unidade(request, pk):
     }
 
     return render(request, 'unidade/detalhe.html', context)
+
+def gerar_relatorio(request):
+    movimentacoes = Movimentacao.objects.all()
+    motoristas = Motorista.objects.all()
+    unidades = Unidade.objects.all()
+
+    context = {
+        'motoristas': motoristas,
+        'unidades': unidades
+    }
+
+    if request.method == "GET":
+        id_origem = request.GET.get('id_origem')
+        id_destino = request.GET.get('id_destino')
+        id_motorista = request.GET.get('id_motorista')
+
+    if request.GET.get('gerar'):
+        origem_str = "Todos" if id_origem == '0' else unidades.get(id=id_origem)
+        movimentacoes = movimentacoes.filter(origem=origem_str) if origem_str != "Todos" else movimentacoes
+
+        destino_str = "Todos" if id_destino == '0' else unidades.get(id=id_destino)
+        movimentacoes = movimentacoes.filter(destino=destino_str) if destino_str != "Todos" else movimentacoes
+
+        motorista_str = "Todos" if id_motorista == '0' else motoristas.get(id=id_motorista)
+        movimentacoes = movimentacoes.filter(motorista=motorista_str) if motorista_str != "Todos" else movimentacoes
+
+        context = {
+            'origem_str': origem_str,
+            'destino_str': destino_str,
+            'motorista_str': motorista_str,
+            'movimentacoes': movimentacoes
+        }
+        return render(request, 'movimentacao/relatorio.html', context)
+    return render(request, 'movimentacao/gerar_relatorio.html', context)
+

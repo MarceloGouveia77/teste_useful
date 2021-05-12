@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+  <meta name="Relatório" content="Teste">
+  <title>Relatório - Trechos</title>
+
+  <style type="text/css">
+
+    @media print {
+
+      body {
+        padding: 0;
+        display:table;
+        table-layout:fixed;
+        margin: 6mm 10mm 6mm 10mm;
+        box-shadow: 0;
+      }
+
+      @page{
+        size: A4;
+        margin: 6mm 10mm 6mm 10mm;
+        padding: 0;
+        box-shadow: 0;
+      }
+      
+    }
+
+    body {
+      background-color: #fff;
+      -webkit-transition: left 500ms;
+      transition: left 500ms;
+      max-width: 595.5pt;
+      max-height: 842.0pt;
+      margin: auto;
+      background-repeat: repeat-x;
+    }
+    @page {
+      background: white;
+      display: block;
+      margin: 0mm 10mm 0mm 10mm;
+      box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+      word-wrap: break-word;
+    }
+
+    /* Page Definitions */
+    @page Conteudo {
+      size: 595.5pt 842.0pt;
+      margin: 4.0pt 4.0pt 4.0pt 4.0pt;
+      page-break-after: always;
+
+    }
+
+    div.Conteudo {
+      background-color: #fff;
+      width: 595.5pt;
+      height: 842.0pt;
+      page-break-after: always;
+    }
+
+    /* tr:nth-child(even) {
+      background-color: #e9e9e9;
+    } */
+
+    table {
+      border-top: 1px solid #b0b3b6;
+      margin-top: 10pt;
+      padding: 10pt 0 10pt 0;
+      font-family: sans-serif;
+      font-size: 10pt;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .subs {
+        margin: 0;
+    }
+
+    th {
+      border: 1px solid #b0b3b6;
+    }
+
+    td {
+      border: 1px solid #b0b3b6;
+      padding: 2pt;
+      font-size: 9pt;
+    }
+   
+    thread {
+      display:table-header-group;
+    }
+    tfoot {
+      display:table-footer-group;
+    }
+    .infos p {
+      margin: 0;
+      text-align: left;
+    }
+  </style>
+
+</head>
+
+<body lang='PT-BR'>
+
+  <div class="Conteudo">
+      <div class="row">
+        <div class="titulo" style="border: 1px solid #b0b3b6; text-align: center; border-bottom: none; width: 100%; background: #7386D5; color: white;">
+            <h5 style="padding: 5pt 0 5pt 0; margin: 0;">RELATÓRIO DE CHAMADOS</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <table style="margin-top: 0;">
+          <tbody>
+            <tr>
+              <td class="infos" style="padding: 0; padding-left: 5pt; width: 50%;">
+                <p><b>Origem:</b> {{ origem_str }}</p>
+                <p><b>Destino:</b> {{ destino_str }}</p>
+                <p><b>Motorista:</b> {{ motorista_str }}</p>
+              </td>
+              <td style="padding: 10pt; width: 50%;">
+                <span style="margin-bottom: 16%; margin-top: 18.2%; margin-left: 40%; font-size: 15pt;">USEFUL</span>
+                <p style="margin: 0; text-align: right;">Relatório emitido em {% now "d/m/Y" %}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <div style="border-right: 1px solid #b0b3b6; border-left: 1px solid #b0b3b6;">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="row">
+        <table style="margin-bottom: 9.1pt; margin-top: 9.1pt; margin-top: 0;">
+            <thead>
+              <tr>
+                <th>Dt Saida</th>
+                <th>Origem</th>
+                <th>Dt Chegada</th>
+                <th>Destino</th>
+                <th>Concluido</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for movimentacao in movimentacoes %}
+                <tr>
+                    <td>{{ movimentacao.obter_data_saida }}</td>
+                    <td>{{ movimentacao.origem|title }}</td>
+                    <td>{{ movimentacao.obter_data_chegada|title }}</td>
+                    <td>{{ movimentacao.destino|lower|capfirst }}</td>
+                    <td>{% if movimentacao.status %} OK {% else %} NÃO {% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+  
+
+</body>
+
+</html>

@@ -15,6 +15,13 @@ class Movimentacao(models.Model):
     hora_saida = models.DateTimeField('Saida', auto_now_add=True)
     destino = models.ForeignKey(Unidade, related_name='Unidade_Destino', on_delete=models.CASCADE)
     hora_chegada = models.DateTimeField('Chegada', auto_now=True)
+    concluido = models.BooleanField('Concluido', default=False)
 
     def __str__(self):
         return f'Origem: {self.origem} / Destino: {self.destino}'
+
+    def obter_data_saida(self):
+        return self.hora_saida.strftime('%d/%m/%Y')
+
+    def obter_data_chegada(self):
+        return self.hora_chegada.strftime('%d/%m/%Y')

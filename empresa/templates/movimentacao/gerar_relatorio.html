@@ -1,0 +1,55 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<form method="GET" class="bootstrap4" id="gerar-relatorio" action="{% url 'empresa:gerar_relatorio' %}">{% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title" id="modal-generico-label"><span style="color: #0073aa;">Relatório de </span>Trecho</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="form-line w-100">
+                        <label for="id_origem">Origem</label>
+                        <br>
+                        <select class="form-control" name="id_origem" id="id_origem">
+                            <option value="0">Todos</option>
+                            {% for unidade in unidades %}
+                                <option value="{{ unidade.id }}">{{ unidade.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-line w-100">
+                        <label for="id_destino">Destino</label>
+                        <br>
+                        <select class="form-control" name="id_destino" id="id_destino">
+                            <option value="0">Todos</option>
+                            {% for unidade in unidades %}
+                                <option value="{{ unidade.id }}">{{ unidade.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-line w-100">
+                        <label for="id_motorista">Motorista</label>
+                        <br>
+                        <select class="form-control" name="id_motorista" id="id_motorista">
+                            <option value="0">Todos</option>
+                            {% for motorista in motoristas %}
+                                <option value="{{ motorista.id }}">{{ motorista.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <input type="submit" name="gerar" id="gerar" class="btn btn-primary foot-btn">
+    </div>
+</form>
