@@ -3,8 +3,9 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #e9e9e9;
 }
+
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -103,3 +104,23 @@ a[data-toggle="collapse"] {
     min-height: 100vh;
 }
 
+.content {
+    width: 100%;
+    display: inline-block;
+    margin: 20px 20px 0 20px;
+}
+
+.page-header {
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    color: rgb(80, 80, 80);
+}
+
+.main-content {
+    margin-top: 20px;
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+
+}
