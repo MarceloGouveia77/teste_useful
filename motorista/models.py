@@ -1,8 +1,10 @@
 from django.db import models
 from empresa.models import Unidade
+from django.conf import settings
 # Create your models here.
 
 class Motorista(models.Model):
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     nome = models.CharField('Nome', max_length=50)
     unidade = models.ForeignKey(Unidade, related_name='Unidade', on_delete=models.CASCADE)
 

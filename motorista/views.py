@@ -36,3 +36,16 @@ def detalhe_motorista(request, pk):
     }
 
     return render(request, 'motorista/detalhe.html', context)
+
+def portal_motorista(request):
+    motorista = Motorista.objects.get(usuario=request.user)
+    movimentacoes = Movimentacao.objects.filter(motorista=motorista)
+
+    context = {
+        'motorista': motorista,
+        'qtd_movimentacoes': movimentacoes.count(),
+        'movimentacoes': movimentacoes,
+        'movimentacoes_aberto': movimentacoes.filter(concluido=False)
+    }
+
+    return render(request, 'portal/index.html', context)
