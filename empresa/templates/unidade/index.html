@@ -9,7 +9,6 @@
     <div class="row">
         <div class="col-12 text-right">
             <button type="button" class="btn btn-sm btn-success openPopup" href="javascript:void(0);" data-href="{% url 'empresa:cadastrar_unidade' %}"><i class="fas fa-plus"></i> Cadastrar</button>
-            <button class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i> Relatório</button>
             <button id="buscar" class="btn btn-dark btn-sm"><i class="fas fa-search"></i> Buscar</button>
         </div>
         <div class="table-responsive col-12">
@@ -27,7 +26,7 @@
                     
                     {% for unidade in unidades %}
                         <tr>
-                            <td><a class="link" href="http://" target="_blank" rel="noopener noreferrer">{{ unidade.nome }}</a></td>
+                            <td><a class="link" href="{% url 'empresa:detalhe_unidade' pk=unidade.id %}" rel="noopener noreferrer">{{ unidade.nome }}</a></td>
                             <td>{{ unidade.cidade }}</td>
                             <td>{{ unidade.rua }}</td>
                             <td>{{ unidade.numero }}</td>
