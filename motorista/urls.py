@@ -6,4 +6,5 @@ app_name = 'motorista'
 
 urlpatterns = [
     path('', views.listar_motoristas, name='listar_motoristas'),
+    path('cadastrar/', views.cadastrar_motorista, name='cadastrar_motorista'),
 ]

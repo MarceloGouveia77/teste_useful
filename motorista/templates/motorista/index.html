@@ -8,7 +8,7 @@
 {% block content %}
     <div class="row">
         <div class="col-12 text-right">
-            <button class="btn btn-sm btn-success"><i class="fas fa-plus"></i> Cadastrar</button>
+            <button type="button" class="btn btn-sm btn-success openPopup" href="javascript:void(0);" data-href="{% url 'motorista:cadastrar_motorista' %}"><i class="fas fa-plus"></i> Cadastrar</button>
             <button class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i> Relatório</button>
             <button id="buscar" class="btn btn-dark btn-sm"><i class="fas fa-search"></i> Buscar</button>
         </div>
@@ -49,7 +49,7 @@ $(document).ready(function() {
     $('#motorista-table').DataTable();
     $('#motorista-table_length').hide();
     $("#motorista-table_filter").hide();
-    
+
     $("#buscar").click(function(){
         if($("#motorista-table_filter").is(":hidden")){
             $("#motorista-table_filter").show();
