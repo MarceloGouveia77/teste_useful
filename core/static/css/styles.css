@@ -124,3 +124,12 @@ a[data-toggle="collapse"] {
     padding: 10px;
 
 }
+
+.table-responsive {
+    padding-top: 20px;
+}
+
+.link {
+    text-decoration: initial;
+    color: blue;
+}
