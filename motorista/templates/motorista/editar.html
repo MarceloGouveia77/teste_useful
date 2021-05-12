@@ -11,6 +11,7 @@
             </button>
         </div>
         <div class="modal-body" id="modal-body" data-url="{% url 'motorista:editar_motorista' pk=pk %}">
+            {{ form.usuario|as_crispy_field }}
             {{ form.nome|as_crispy_field }}
             {{ form.unidade|as_crispy_field }}
         </div>

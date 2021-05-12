@@ -1,0 +1,52 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar | USEFUL</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body class="hold-transition login-page">
+    
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+      
+          <!-- Icon -->
+          <div class="fadeIn first mb-1">
+            <span>USEFUL SUGGESTION</span>
+          </div>
+      
+          <!-- Login Form -->
+        <form action="" method="post">{% csrf_token %}
+            {{form.username.errors}}
+            {{form.username|as_crispy_field}}
+            {{form.password.errors}}
+            {{form.password|as_crispy_field}}
+
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+          </div>
+      
+        </div>
+      </div>
+    
+    
+    <script>
+        $("#id_username").addClass('fadeIn second');
+        $("#id_password").addClass('fadeIn third');
+    </script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

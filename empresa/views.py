@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from core.decorators import admin_required
 from django.http.response import HttpResponse
 from django.shortcuts import render, HttpResponse
 from empresa.models import Unidade
@@ -5,17 +7,22 @@ from empresa.forms import UnidadeForm
 from motorista.models import Motorista, Movimentacao
 
 # Create your views here.
-
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
 def dashboard(request):
     movimentacoes = Movimentacao.objects.all()
 
     return render(request, 'dashboard/index.html', {'movimentacoes': movimentacoes, 'dashboard_active': 'active'})
 
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
 def listar_unidades(request):
     unidades = Unidade.objects.all()
 
     return render(request, 'unidade/index.html', {'unidades': unidades, 'unidades_active': 'active'})
 
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
 def cadastrar_unidade(request):
     form = UnidadeForm(request.POST or None)
 
@@ -24,6 +31,8 @@ def cadastrar_unidade(request):
         return HttpResponse('<script>window.location.reload()</script>')
     return render(request, 'unidade/cadastrar.html', {'form': form})
 
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
 def editar_unidade(request, pk):
     instance = Unidade.objects.get(id=pk)
     form = UnidadeForm(request.POST or None, instance=instance)
@@ -33,6 +42,8 @@ def editar_unidade(request, pk):
         return HttpResponse('<script>window.location.reload()</script>')
     return render(request, 'unidade/editar.html', {'form': form, 'pk': pk})
 
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
 def detalhe_unidade(request, pk):
     unidade = Unidade.objects.get(id=pk)
     movimentacoes_origem = Movimentacao.objects.filter(origem=unidade)
@@ -48,6 +59,8 @@ def detalhe_unidade(request, pk):
 
     return render(request, 'unidade/detalhe.html', context)
 
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
 def gerar_relatorio(request):
     movimentacoes = Movimentacao.objects.all()
     motoristas = Motorista.objects.all()
