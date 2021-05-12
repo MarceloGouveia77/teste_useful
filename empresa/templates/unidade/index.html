@@ -20,6 +20,7 @@
                         <th>Rua</th>
                         <th>Numero</th>
                         <th>Código Postal</th>
+                        <th>OP</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,10 @@
                             <td>{{ unidade.rua }}</td>
                             <td>{{ unidade.numero }}</td>
                             <td>{{ unidade.codigo_postal }}</td>
+                            <td width="10%">
+                                <a href="javascript:void(0);" data-href="{% url 'empresa:editar_unidade' pk=unidade.id %}" class="btn btn-sm btn-primary openPopup"><i class="fas fa-edit"> </i> </a>
+                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"> </i></button>
+                            </td>
                         </tr>
                     {% endfor %}
                         
@@ -42,6 +47,7 @@
                         <th>Rua</th>
                         <th>Numero</th>
                         <th>Código Postal</th>
+                        <th>OP</th>
                     </tr>
                 </tfoot>
             </table>

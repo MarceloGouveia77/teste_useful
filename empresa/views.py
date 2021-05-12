@@ -24,6 +24,15 @@ def cadastrar_unidade(request):
         return HttpResponse('<script>window.location.reload()</script>')
     return render(request, 'unidade/cadastrar.html', {'form': form})
 
+def editar_unidade(request, pk):
+    instance = Unidade.objects.get(id=pk)
+    form = UnidadeForm(request.POST or None, instance=instance)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponse('<script>window.location.reload()</script>')
+    return render(request, 'unidade/editar.html', {'form': form, 'pk': pk})
+
 def detalhe_unidade(request, pk):
     unidade = Unidade.objects.get(id=pk)
     movimentacoes_origem = Movimentacao.objects.filter(origem=unidade)
