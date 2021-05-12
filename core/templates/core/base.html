@@ -27,15 +27,15 @@
             </div>
     
             <ul class="list-unstyled components">
-                <p>Marcelo Gouveia</p>
-                <li>
+                <p class="user">Marcelo Gouveia</p>
+                <li class="{{ dashboard_active }}">
                     <a href="{% url 'empresa:dashboard' %}"><i class="fas fa-home pr-1"></i> Home</a>
                 </li>
-                <li class="">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-truck-moving pr-1"></i> Motoristas</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li class="{{ motoristas_active }}">
+                    <a href="#motoristaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-truck-moving pr-1"></i> Motoristas</a>
+                    <ul class="collapse list-unstyled" id="motoristaSubmenu">
                         <li>
-                            <a href="#">Todos</a>
+                            <a href="{% url 'motorista:listar_motoristas' %}">Todos</a>
                         </li>
                         <li>
                             <a href="#">Cadastrar</a>
@@ -45,9 +45,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-building pl-1 pr-1"></i> Unidades</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li class="{{ unidades_active }}">
+                    <a href="#unidadeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-building pl-1 pr-1"></i> Unidades</a>
+                    <ul class="collapse list-unstyled" id="unidadeSubmenu">
                         <li>
                             <a href="{% url 'empresa:listar_unidades' %}">Todas</a>
                         </li>
@@ -59,14 +59,14 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">Página 4</a>
+                <li class="{{ movimentacoes_active }}">
+                    <a href="#"><i class="fas fa-compress-alt pr-1 pl-1"></i> Movimentações</a>
                 </li>
             </ul>
         </nav>
 
         <div class="content">
-            <div class="page-header col-12">
+            <div class="page-header titulo-card col-12">
                 <h4>{% block page_header %} {% endblock page_header %}</h4>
             </div>
 
@@ -80,12 +80,21 @@
         </div>
     
     </div>
+    <div class="modal fade" id="modal-generico" tabindex="-1" role="dialog" aria-labelledby="modal-genericoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            
+        </div>
+    </div>
+</div>
 </body>
 
 <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script src="{% static 'js/plugins/modal.js' %}"></script>
 
 <script>
     $(document).ready(function () {

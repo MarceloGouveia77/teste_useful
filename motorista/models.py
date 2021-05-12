@@ -10,6 +10,7 @@ class Motorista(models.Model):
         return self.nome
 
 class Movimentacao(models.Model):
+    motorista = models.ForeignKey(Motorista, related_name='Motorista', on_delete=models.CASCADE)
     origem = models.ForeignKey(Unidade, related_name='Unidade_Origem', on_delete=models.CASCADE)
     hora_saida = models.DateTimeField('Saida', auto_now_add=True)
     destino = models.ForeignKey(Unidade, related_name='Unidade_Destino', on_delete=models.CASCADE)

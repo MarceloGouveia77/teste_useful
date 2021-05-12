@@ -68,8 +68,8 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+    color: #7386D5;
+    background: #fff;
 }
 ul ul a {
     font-size: 0.9em !important;
@@ -121,7 +121,7 @@ a[data-toggle="collapse"] {
     margin-top: 20px;
     background: white;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
 
 }
 
@@ -132,4 +132,15 @@ a[data-toggle="collapse"] {
 .link {
     text-decoration: initial;
     color: blue;
+}
+
+.user {
+    background: #6d7fcc;
+    text-align: center;
+}
+
+.titulo-card {
+    background: #7386D5;
+    color: white;
+    font-weight: bold;
 }

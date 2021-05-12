@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} Motoristas{% endblock title %}
+{% block page_header %} Motoristas {% endblock page_header %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 text-right">
+            <button class="btn btn-sm btn-success"><i class="fas fa-plus"></i> Cadastrar</button>
+            <button class="btn btn-sm btn-primary"><i class="fas fa-file-pdf"></i> Relatório</button>
+            <button id="buscar" class="btn btn-dark btn-sm"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+        <div class="table-responsive col-12">
+            <table id="motorista-table" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Unidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for motorista in motoristas %}
+                        <tr>
+                            <td><a class="link" href="http://" target="_blank" rel="noopener noreferrer">{{ motorista.nome }}</a></td>
+                            <td>{{ motorista.unidade }}</td>
+                        </tr>
+                    {% endfor %}
+                        
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Unidade</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+{% endblock content %}
+
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#motorista-table').DataTable();
+    $('#motorista-table_length').hide();
+    $("#motorista-table_filter").hide();
+    
+    $("#buscar").click(function(){
+        if($("#motorista-table_filter").is(":hidden")){
+            $("#motorista-table_filter").show();
+        }else{
+            $("#motorista-table_filter").hide();
+        }
+    })
+} );
+</script>
+{% endblock scripts %}
+    
