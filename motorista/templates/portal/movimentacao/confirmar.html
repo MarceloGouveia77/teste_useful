@@ -1,0 +1,44 @@
+{% load static %}
+<div class="modal-header">
+  <h5 class="modal-title">Confirmar Movimentação</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form method="post" id="confirmar-movimentacao">{% csrf_token %}
+    <div class="modal-body" id="modal-body" data-url="{% url 'motorista:confirmar_movimentacao' pk=pk %}">
+    <p>Deseja concluir esta movimentação?.</p>
+    </div>
+
+    <div class="modal-footer">
+    <button id="confirmar" type="submit" class="btn btn-success">Sim, confirmar</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        Close
+    </button>
+    </div>
+</form>
+
+<script>
+    function enviar_POST(event) {
+        var endpoint = $("#modal-body").attr('data-url'); // PEGA A URL DO DJANGO TEMPLATE
+        event.preventDefault();
+        var data = new FormData($('#confirmar-movimentacao').get(0)); // DATA = FORM(#ID)
+        $.ajax({
+            url: endpoint,
+            type: 'POST',
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+        return false;
+    }
+
+    $(function () {
+        $('#confirmar').click(enviar_POST);
+    });
+
+</script>

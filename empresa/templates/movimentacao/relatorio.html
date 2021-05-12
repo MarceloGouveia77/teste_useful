@@ -138,21 +138,22 @@
         <table style="margin-bottom: 9.1pt; margin-top: 9.1pt; margin-top: 0;">
             <thead>
               <tr>
+                <th>Motorista</th>
                 <th>Dt Saida</th>
                 <th>Origem</th>
                 <th>Dt Chegada</th>
                 <th>Destino</th>
-                <th>Concluido</th>
             </tr>
             </thead>
             <tbody>
                 {% for movimentacao in movimentacoes %}
                 <tr>
+                    <!-- <td>{% if movimentacao.status %} OK {% else %} NÃO {% endif %}</td> -->
+                    <td>{{ movimentacao.motorista|title }}</td>
                     <td>{{ movimentacao.obter_data_saida }}</td>
                     <td>{{ movimentacao.origem|title }}</td>
                     <td>{{ movimentacao.obter_data_chegada|title }}</td>
-                    <td>{{ movimentacao.destino|lower|capfirst }}</td>
-                    <td>{% if movimentacao.status %} OK {% else %} NÃO {% endif %}</td>
+                    <td>{{ movimentacao.destino|title }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
