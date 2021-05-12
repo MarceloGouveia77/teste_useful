@@ -28,7 +28,7 @@
                             <td>{{ motorista.unidade }}</td>
                             <td width="10%">
                                 <a href="javascript:void(0);" data-href="{% url 'motorista:editar_motorista' pk=motorista.id %}" class="btn btn-sm btn-primary openPopup"><i class="fas fa-edit"> </i> </a>
-                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"> </i></button>
+                                <a href="javascript:void(0);" data-href="{% url 'core:remover_registro' pk=motorista.id app='motorista' model='motorista' %}" class="btn btn-sm btn-danger openPopup"><i class="fas fa-trash"> </i></a>
                             </td>
                         </tr>
                     {% endfor %}
