@@ -11,8 +11,14 @@
             </button>
         </div>
         <div class="modal-body" id="modal-body" data-url="{% url 'motorista:cadastrar_motorista' %}">
+            {{ form.non_field_errors }}
+            {{ form.usuario.errors}}
             {{ form.usuario|as_crispy_field }}
+
+            {{ form.nome.errors}}
             {{ form.nome|as_crispy_field }}
+
+            {{ form.unidade.errors}}
             {{ form.unidade|as_crispy_field }}
         </div>
         <div class="modal-footer">
@@ -36,6 +42,10 @@
             contentType: false,
             success: function (data) {
                 window.location.reload();
+            },
+            error: function(data) {
+                const error = JSON.parse(data.responseJSON);
+                alert(error.usuario[0].message);
             }
         });
         return false;

@@ -9,5 +9,7 @@ urlpatterns = [
     path('unidades/cadastrar', views.cadastrar_unidade, name='cadastrar_unidade'),
     path('unidades/detalhe/<int:pk>/', views.detalhe_unidade, name='detalhe_unidade'),
     path('unidades/editar/<int:pk>/', views.editar_unidade, name='editar_unidade'),
+    path('movimentacoes/', views.listar_movimentacoes, name='listar_movimentacoes'),
     path('movimentacoes/relatorio', views.gerar_relatorio, name='gerar_relatorio'),
+    path('movimentacoes/cadastrar/', views.cadastrar_movimentacao, name='cadastrar_movimentacao'),
 ]

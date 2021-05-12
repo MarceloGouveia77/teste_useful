@@ -1,0 +1,51 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<form method="POST" class="bootstrap4" id="cadastrar-movimentacao">{% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title" id="modal-generico-label"><span style="color: #0073aa;">Cadastrar:</span>
+            Movimentação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" id="modal-body" data-url="{% url 'empresa:cadastrar_movimentacao' %}">
+        {{ form.motorista|as_crispy_field }}
+        {{ form.origem|as_crispy_field }}
+        {{ form.destino|as_crispy_field }}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</form>
+
+<script>
+    $("#id_motorista").attr("disabled", "disabled");
+    $("#cadastrar-movimentacao :disabled").removeAttr('disabled');
+</script>
+
+<script>
+    function enviar_POST(event) {
+        var endpoint = $("#modal-body").attr('data-url'); // PEGA A URL DO DJANGO TEMPLATE
+        event.preventDefault();
+        var data = new FormData($('#cadastrar-movimentacao').get(0)); // DATA = FORM(#ID)
+        $.ajax({
+            url: endpoint,
+            type: $(this).attr('method'),
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+        return false;
+    }
+
+    $(function () {
+        $('#cadastrar-movimentacao').submit(enviar_POST);
+    });
+
+</script>

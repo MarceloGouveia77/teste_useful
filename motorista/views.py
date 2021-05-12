@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from core.decorators import admin_required
 from motorista.forms import MotoristaForm, MovimentacaoForm
 from motorista.models import Motorista, Movimentacao
+import json
 import datetime
 
 # Create your views here.
@@ -21,6 +22,9 @@ def cadastrar_motorista(request):
     if form.is_valid():
         form.save()
         return HttpResponse('<script>window.location.reload()</script>')
+    elif form.errors:
+        erros = form.errors.as_json()
+        return HttpResponse(json.dumps(erros), content_type='application/json', status=400)
     return render(request, 'motorista/cadastrar.html', {'form': form})
 
 @login_required(login_url='/login')

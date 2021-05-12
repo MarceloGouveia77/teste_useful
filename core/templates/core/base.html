@@ -27,7 +27,7 @@
             </div>
     
             <ul class="list-unstyled components">
-                <p class="user">Marcelo Gouveia</p>
+                <p class="user">{{ user.username }}</p>
                 <li class="{{ dashboard_active }}">
                     <a href="{% url 'empresa:dashboard' %}"><i class="fas fa-home pr-1"></i> Home</a>
                 </li>
@@ -40,9 +40,6 @@
                         <li>
                             <a href="javascript:void(0);" data-href="{% url 'motorista:cadastrar_motorista' %}" class="openPopup">Cadastrar</a>
                         </li>
-                        <li>
-                            <a href="#">Relatório</a>
-                        </li>
                     </ul>
                 </li>
                 <li class="{{ unidades_active }}">
@@ -54,10 +51,10 @@
                         <li>
                             <a href="javascript:void(0);" data-href="{% url 'empresa:cadastrar_unidade' %}" class="openPopup">Cadastrar</a>
                         </li>
-                        <li>
-                            <a href="#">Relatório</a>
-                        </li>
                     </ul>
+                </li>
+                <li class="{{ movimentacoes_active }}">
+                    <a href="{% url 'empresa:listar_movimentacoes' %}" ><i class="fas fa-compress-alt pr-1 pl-1"></i> Movimentações</a>
                 </li>
                 <li class="{{ relatorio_active }}">
                     <a href="javascript:void(0);" class="openPopup" data-href="{% url 'empresa:gerar_relatorio' %}"><i class="fas fa-file-pdf pr-1 pl-1"></i> Relatório</a>

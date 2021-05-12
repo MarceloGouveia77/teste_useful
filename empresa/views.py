@@ -4,6 +4,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, HttpResponse
 from empresa.models import Unidade
 from empresa.forms import UnidadeForm
+from motorista.forms import MovimentacaoForm
 from motorista.models import Motorista, Movimentacao
 
 # Create your views here.
@@ -13,6 +14,23 @@ def dashboard(request):
     movimentacoes = Movimentacao.objects.all()
 
     return render(request, 'dashboard/index.html', {'movimentacoes': movimentacoes, 'dashboard_active': 'active'})
+
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
+def listar_movimentacoes(request):
+    movimentacoes = Movimentacao.objects.all()
+
+    return render(request, 'movimentacao/index.html', {'movimentacoes': movimentacoes, 'movimentacoes_active': 'active'})
+
+@login_required(login_url='/login')
+@admin_required(login_url='/motorista/portal', redirect_field_name=None)
+def cadastrar_movimentacao(request):
+    form = MovimentacaoForm(request.POST or None, hidden=False)
+    
+    if form.is_valid():
+        form.save()
+        return HttpResponse('<script>window.location.reload()</script>')
+    return render(request, 'movimentacao/cadastrar.html', {'form': form})
 
 @login_required(login_url='/login')
 @admin_required(login_url='/motorista/portal', redirect_field_name=None)
