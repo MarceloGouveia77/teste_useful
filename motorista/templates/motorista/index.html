@@ -17,6 +17,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Unidade</th>
+                        <th>OP</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,10 @@
                         <tr>
                             <td><a class="link" href="{% url 'motorista:detalhe_motorista' pk=motorista.id %}" rel="noopener noreferrer">{{ motorista.nome }}</a></td>
                             <td>{{ motorista.unidade }}</td>
+                            <td width="10%">
+                                <a href="javascript:void(0);" data-href="{% url 'motorista:editar_motorista' pk=motorista.id %}" class="btn btn-sm btn-primary openPopup"><i class="fas fa-edit"> </i> </a>
+                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"> </i></button>
+                            </td>
                         </tr>
                     {% endfor %}
                         
@@ -33,6 +38,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Unidade</th>
+                        <th>OP</th>
                     </tr>
                 </tfoot>
             </table>

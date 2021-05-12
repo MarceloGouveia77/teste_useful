@@ -16,6 +16,15 @@ def cadastrar_motorista(request):
         return HttpResponse('<script>window.location.reload()</script>')
     return render(request, 'motorista/cadastrar.html', {'form': form})
 
+def editar_motorista(request, pk):
+    instance = Motorista.objects.get(id=pk)
+    form = MotoristaForm(request.POST or None, instance=instance)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponse('<script>window.location.reload()</script>')
+    return render(request, 'motorista/editar.html', {'form': form, 'pk':pk})
+
 def detalhe_motorista(request, pk):
     motorista = Motorista.objects.get(id=pk)
     movimentacoes = Movimentacao.objects.filter(motorista=motorista)
