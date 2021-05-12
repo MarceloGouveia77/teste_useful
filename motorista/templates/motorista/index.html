@@ -24,7 +24,7 @@
                     
                     {% for motorista in motoristas %}
                         <tr>
-                            <td><a class="link" href="http://" target="_blank" rel="noopener noreferrer">{{ motorista.nome }}</a></td>
+                            <td><a class="link" href="{% url 'motorista:detalhe_motorista' pk=motorista.id %}" rel="noopener noreferrer">{{ motorista.nome }}</a></td>
                             <td>{{ motorista.unidade }}</td>
                         </tr>
                     {% endfor %}

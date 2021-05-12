@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} {{ motorista.nome }} {% endblock title %}
+{% block page_header %} {{ motorista.nome }} {% endblock page_header %}
+    
+
+{% block content %}
+    <div class="row">
+        <div class="col-6 text-left mb-3">
+            <a class="btn btn-sm btn-success" href="{% url 'motorista:listar_motoristas' %}"><i class="fas fa-arrow-left"></i> Voltar</a>
+        </div>
+        <div class="col-6 text-right mb-3">
+            <button class="btn btn-sm btn-primary"><i class="fas fa-print"></i> Imprimir</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-12">
+            <h5>Unidade: <span style="font-weight: normal;">{{ motorista.unidade }}</span></h5>
+            <h5>Cidade: <span style="font-weight: normal;">{{ motorista.unidade.cidade }}</span></h5>
+            <h5>Caixa Postal: <span style="font-weight: normal;">{{ motorista.unidade.codigo_postal }}</span></h5>
+        </div>
+        <div class="col-md-3 col-6 text-center">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header">Movimentações</div>
+                <div class="card-body">
+                  <h5 class="card-title">895</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-3 col-6 text-center">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Concluidas</div>
+                <div class="card-body">
+                  <h5 class="card-title">112</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-3 col-6 text-center">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">Canceladas</div>
+                <div class="card-body">
+                  <h5 class="card-title">39</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header titulo-card">Histórico de Movimentações</div>
+                <div class="card-body">
+                    <table id="dashboard-table" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Motorista</th>
+                                <th>Origem</th>
+                                <th>Destino</th>
+                                <th>Concluido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for movimentacao in movimentacoes %}
+                                <tr>
+                                    <td>{{ movimentacao.motorista }}</td>
+                                    <td>{{ movimentacao.origem }}</td>
+                                    <td>{{ movimentacao.destino }}</td>
+                                    <td>SIM</td>
+                                </tr>
+                            {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    
